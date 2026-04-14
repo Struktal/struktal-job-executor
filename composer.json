@@ -1,0 +1,17 @@
+{
+    "name": "struktal/struktal-job-executor",
+    "description": "PHP library for executing jobs in a separate PHP process",
+    "keywords": [
+        "job-executor"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "autoload":{
+        "psr-4": {
+            "struktal\\jobexecutor\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=8.2.0"
+    }
+}
