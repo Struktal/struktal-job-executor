@@ -26,7 +26,7 @@ class JobExecutor {
      * @return void
      * @throws \InvalidArgumentException If the job name or PHP binary path contains potentially dangerous patterns
      */
-    public static function execute(string $jobName): void {
+    public function execute(string $jobName): void {
         self::scanDangerousPatterns(PHP_BINARY);
         self::scanDangerousPatterns($jobName);
 
@@ -34,6 +34,7 @@ class JobExecutor {
         $command = "";
         if (self::$jobDirectory !== null) {
             $command .= "cd " . escapeshellcmd(self::$jobDirectory) . " && ";
+            $file = escapeshellcmd(self::$jobDirectory);
         } else {
             $file = ".";
         }
@@ -78,7 +79,7 @@ class JobExecutor {
         }
 
         if (preg_match('/[\x00-\x1F]/', $string)) {
-            throw new InvalidArgumentException("The string contains control characters, which are not allowed: " . $string);
+            throw new \InvalidArgumentException("The string contains control characters, which are not allowed: " . $string);
         }
     }
 }
